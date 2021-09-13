@@ -1,0 +1,18 @@
+<a href="/">
+<h5>Home</h5>
+</a>
+<div class="card-panel grey lighten-5 z-depth-1">
+          <h4 class="teal-text text-darken-2" id='post-title'> {{post.title}}</h4>
+          <input id='new-title' type='text' placeholder="{{post.title}}" class="form-control" style="display: none;">
+          <p id="post-body">{{post.body}}</p>
+          <textarea id='new-body' placeholder="{{post.body}}" cols="30" rows="10" class="form-control" style="display: none;"></textarea>
+          <p>Posted By: {{post.user.username}}</p>
+          {{!-- put in div if LoggedIn --}}
+          <div>
+          <button class="btn btn-primary" id="delete-btn">Delete</button>
+          <button class="btn btn-primary" id="edit-btn">Edit</button>
+          <button class="btn btn-primary" id="save-btn" style='visibility: hidden'>Save</button>
+          </div>
+</div>
+
+<script src='/js/delete-post.js'></script>

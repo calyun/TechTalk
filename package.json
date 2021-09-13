@@ -1,0 +1,45 @@
+{
+  "name": "techtalk",
+  "version": "1.0.0",
+  "description": "Tech Blog",
+  "engines": {
+    "node": "14.17.3"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "keywords": [],
+  "author": "Cal Younkin",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^8.6.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.3",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "jquery": "^3.6.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "mysql2": "^2.3.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiel1dm/BunchOfHoes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shiel1dm/BunchOfHoes/issues"
+  },
+  "homepage": "https://github.com/shiel1dm/BunchOfHoes#readme"
+}
