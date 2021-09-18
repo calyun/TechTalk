@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 3000;
 
 
 const sess = {
-  secret: 'plants',
+  secret: 'silicone',
   cookie: {},
   resave: false,
   saveUninitialized: true,
