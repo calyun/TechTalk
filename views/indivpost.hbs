@@ -37,6 +37,24 @@
         </div>
     </div>
 </div>
+{{#if loggedIn}}
+<div class="container">
+    <div class="row">
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <form>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <label>Add a reply!</label>
+                        <input type="text" id="reply" placeholder="Reply" class="form-control">
+                        <button class="btn btn-primary" id='reply-btn'>Reply</button>
+                    </div>
+                </div>
+            </form>
+        </div>    
+    </div>
+</div>
+{{/if}}
+{{#if post.replies}}
 <div class="container">
     <div class="col s12">
         <div class="card-panel grey lighten-5 z-depth-1">
@@ -52,6 +70,17 @@
         </div>
     </div>
 </div>
+{{/if}}
+
+{{#unless post.replies}}
+<div class="container">
+    <div class="col s12">
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <h4 class="teal-text text-darken-2 center">No Replies :(</h4>
+        </div>
+    </div>
+</div>
+{{/unless}}
 
 {{#if loggedIn}}
 <script src="/js/logout.js"></script>

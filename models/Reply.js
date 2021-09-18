@@ -13,6 +13,9 @@ Reply.init(
       body: {
         type: DataTypes.STRING
       },
+      date: {
+        type: DataTypes.STRING
+      },
       user_id: {
         type: DataTypes.INTEGER,
         references: {

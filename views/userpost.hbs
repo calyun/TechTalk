@@ -20,20 +20,15 @@
 <div class="container">
     <div class="col s12">
         <div class="card-panel grey lighten-5 z-depth-1">
-            <h4 class="teal-text text-darken-2" id='post-title'> {{post.title}}</h4>
-            <input id='new-title' type='text' placeholder="{{post.title}}" class="form-control" style="display: none;">
-            <p id="post-body">{{post.body}}</p>
-            <textarea id='new-body' placeholder="{{post.body}}" cols="30" rows="10" class="form-control"
-                style="display: none;"></textarea>
-            <p>Posted by {{post.user.username}} on {{date}}</p>
-            {{!-- put in div if LoggedIn --}}
+            <input id='new-title' type='text' value="{{post.title}}" class="form-control">
+            <input id='new-body' type='text' value="{{post.body}}" class="form-control"></input>
+            <p>{{date}}</p>
             <div>
                 <button class="btn btn-primary" id="delete-btn">Delete</button>
-                <button class="btn btn-primary" id="edit-btn">Edit</button>
-                <button class="btn btn-primary" id="save-btn" style='visibility: hidden'>Save</button>
+                <button class="btn btn-primary" id="save-btn">Save</button>
             </div>
         </div>
     </div>
 </div>
 
-    <script src='/js/delete-post.js'></script>
+<script src='/js/delete-post.js'></script>

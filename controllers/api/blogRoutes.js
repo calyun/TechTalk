@@ -21,7 +21,7 @@ router.get("/:id", async function (req, res) {
       {
         model: Reply,
         as: 'replies',
-        attributes: ['reply_id', 'body', 'user_id', 'created_at'],
+        attributes: ['reply_id', 'body', 'user_id', 'date'],
         include: [{
           model: User,
           as: 'user',
@@ -42,7 +42,7 @@ router.get("/:id", async function (req, res) {
   res.render('indivpost', {
     post,
     date,
-    
+    loggedIn: req.session.logged_in,
     layout: 'main',
     view: 'indivpost'
   });
@@ -101,9 +101,10 @@ router.delete('/:id', async (req, res) => {
 //post reply go here
 router.post('/reply', (req, res) => {
   Reply.create({
-    body: req.body.body,
+    body: req.body.text,
     user_id: req.session.user_id,
-    post_id: req.body.post_id
+    post_id: req.body.post_id,
+    date: req.body.date
   }).then((replyData) => {
     console.log(replyData);
     document.location.replace('/');
