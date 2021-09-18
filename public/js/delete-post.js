@@ -3,7 +3,7 @@ async function deletePost(event) {
     const post_id = window.location.toString().split("/")[
         window.location.toString().split("/").length - 1
       ];
-    console.log("POST ID" + post_id);
+    // console.log("POST ID" + post_id);
     const response = await fetch('/blogRoutes/' + post_id, {
         method: "DELETE",
         headers: {

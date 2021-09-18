@@ -10,9 +10,6 @@ Reply.init(
       primaryKey: true,
       autoIncrement: true
       },
-      title: {
-        type: DataTypes.STRING
-      },
       body: {
         type: DataTypes.STRING
       },
@@ -33,7 +30,7 @@ Reply.init(
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: 'reply'

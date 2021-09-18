@@ -6,11 +6,12 @@ const {
 const {
   sync
 } = require('../models/User');
+
 const withAuth = require('../utils/auth')
 
-router.get('/', withAuth, async function (req, res) {
+router.get('/', async function (req, res) {
   const postData = await Post.findAll({
-    attributes: ['post_id', 'title', 'body', 'user_id'],
+    attributes: ['post_id', 'title', 'body', 'user_id', 'created_at'],
     include: [{
       model: User,
       as: 'user',
@@ -20,12 +21,52 @@ router.get('/', withAuth, async function (req, res) {
   const posts = postData.map((post) => post.get({
     plain: true
   }));
-  console.log(posts);
+
+  posts.forEach(index => {
+    let stringifiedArrDate = index.created_at.toString().split(' ')
+    let organizedDate = `${stringifiedArrDate[0]} ${stringifiedArrDate[1]} ${stringifiedArrDate[2]} ${stringifiedArrDate[3]}`
+    console.log(organizedDate)
+    index.date = organizedDate
+  })
+
   res.render('home', {
     posts,
     loggedIn: req.session.logged_in,
     layout: 'main',
     view: 'home'
+  });
+});
+
+router.get('/dashboard', withAuth, async function (req, res) {
+  const postData = await Post.findAll({
+    where: {
+      user_id: req.session.user_id
+    },
+    attributes: ['post_id', 'title', 'body', 'user_id', "created_at"],
+    include: [{
+      model: User,
+      as: 'user',
+      attributes: ['username'],
+    }, ],
+  })
+
+  const posts = postData.map((post) => post.get({
+    plain: true
+  }));
+  
+  posts.forEach(index => {
+    let stringifiedArrDate = index.created_at.toString().split(' ')
+    let organizedDate = `${stringifiedArrDate[0]} ${stringifiedArrDate[1]} ${stringifiedArrDate[2]} ${stringifiedArrDate[3]}`
+    console.log(organizedDate)
+    index.date = organizedDate
+  })
+
+  console.log(posts);
+  res.render('dashboard', {
+    posts,
+    loggedIn: req.session.logged_in,
+    layout: 'main',
+    view: 'dashboard'
   });
 });
 

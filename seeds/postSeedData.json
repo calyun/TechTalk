@@ -1,14 +1,12 @@
 [
   {
     "title": "Fans",
-    "body": "My go to fan is Noctua. Anybody have any other recommentdations?"
+    "body": "My go to fan is Noctua. Anybody have any other recommentdations?",
+    "user_id": 1
   },
   {
     "title": "Temp Control",
-    "body": "My CPU is running hot, help!"
-  },
-  {
-    "title": "New Tech Title",
-    "body": "New tech body here."
+    "body": "My CPU is running hot, help!",
+    "user_id": 2
   }
 ]

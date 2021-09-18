@@ -5,8 +5,10 @@ async function logout() {
     });
     if (response.ok) {
         document.location.replace('/');
+        console.log('no good');
       } else {
         alert(response.statusText);
+        //not logged in
       }
 }
 

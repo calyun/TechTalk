@@ -1,3 +1,8 @@
+function showForm(){
+  document.querySelector('#post-form').setAttribute('style', 'display: block')
+  document.querySelector('#show-post-btn').setAttribute('style', 'display: none');
+}
+
 async function createPost(event) {
     event.preventDefault();
     const title = document.querySelector("#post-title").value.trim();
@@ -13,15 +18,11 @@ async function createPost(event) {
       },
     });
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
     }
 }
 
 document.querySelector('#create-post-btn').addEventListener('click', createPost);
-
-function myFunction(event) {
-    event.preventDefault();
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
+document.querySelector('#show-post-btn').addEventListener('click', showForm);

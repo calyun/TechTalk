@@ -1,47 +1,52 @@
 const router = require('express').Router();
+const withAuth = require('../../utils/auth')
 
 const {
   User,
-  Post
+  Post,
+  Reply
 } = require('../../models');
 
-router.get("/:id", (req, res) => {
-  Post.findOne({
-      where: {
-        post_id: req.params.id,
-      },
-      attributes: ["post_id", "title", "body", "user_id"],
-      include: [
-        {
+router.get("/:id", async function (req, res) {
+  const postData = await Post.findOne({
+    where: {
+      post_id: req.params.id,
+    },
+    attributes: ["post_id", "title", "body", "user_id", "created_at"],
+    include: [{
         model: User,
         as: 'user',
         attributes: ['username'],
       },
+      {
+        model: Reply,
+        as: 'replies',
+        attributes: ['reply_id', 'body', 'user_id', 'created_at'],
+        include: [{
+          model: User,
+          as: 'user',
+          attributes: ['username'],
+        }],
+      },
     ],
-    })
-    .then((postData) => {
-      if (!postData) {
-        res.status(404).json({
-          message: "No Post found with this id"
-        });
-        return;
-      }
-      // console.log("postData: "+postData);
-      const post = postData.get({
-        plain: true
-      });
-      console.log(post);
-      res.render('indivpost', {
-        post,
-        layout: 'main',
-        view: 'indivpost'
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+  });
+  const post = postData.get({
+    plain: true
+  });
+  console.log(post);
+
+  let stringifiedArrDate = post.created_at.toString().split(' ');
+  let organizedDate = `${stringifiedArrDate[0]} ${stringifiedArrDate[1]} ${stringifiedArrDate[2]} ${stringifiedArrDate[3]}`;
+  let date = organizedDate;
+
+  res.render('indivpost', {
+    post,
+    date,
+    
+    layout: 'main',
+    view: 'indivpost'
+  });
+})
 
 router.post('/new', (req, res) => {
   Post.create({
@@ -91,6 +96,20 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+//post reply go here
+router.post('/reply', (req, res) => {
+  Reply.create({
+    body: req.body.body,
+    user_id: req.session.user_id,
+    post_id: req.body.post_id
+  }).then((replyData) => {
+    console.log(replyData);
+    document.location.replace('/');
+  }).catch((err) => {
+    res.json(err);
+  });
 });
 
 module.exports = router;

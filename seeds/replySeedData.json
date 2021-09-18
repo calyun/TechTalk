@@ -1,10 +1,17 @@
 [
   {
-    "title": "Reply to Grubs",
-    "body": "Leave oranges around your leafy plants and the grubs will eat them instead"
+    "body": "Try corsair, they are pretty.",
+    "user_id": 2,
+    "post_id": 1
   },
   {
-    "title": "reply test",
-    "body": "test"
+    "body": "I like be quiet!",
+    "user_id": 3,
+    "post_id": 1
+  },
+  {
+    "body": "Make sure your fans are facing the correct direction.",
+    "user_id": 1,
+    "post_id": 2
   }
 ]
